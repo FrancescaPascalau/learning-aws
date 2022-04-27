@@ -17,6 +17,10 @@ in the cloud.
   another one directly, the app can simply send a message into a queue, where it waits. Other applications can then
   access the message later.
 
+Standard queues allow a high number of inflight messages. If the majority of your messages can't be consumed and aren't
+sent to a dead-letter queue, your rate of processing valid messages can slow down. Thus, to maintain the efficiency of
+your queue, make sure that your application correctly handles message processing.
+
 ![](FIFO.png)   ![](Standard.png)
 
 ### How does SQS work?
@@ -51,6 +55,25 @@ though, specify how many messages it wants to receive at each time.
   one-to-many broadcasts. To address this, you can use **SQS** alongside **SNS** in cases where one-to-many delivery is
   necessary.
 
+### Amazon SQS delay queues
+
+Delay queues let you postpone the delivery of new messages to consumers for a number of seconds, for example, when your
+consumer application needs additional time to process messages. If you create a delay queue, any messages that you send
+to the queue remain invisible to consumers for the duration of the delay period.
+
+**Note**: Delay queues are similar to visibility timeouts because both features make messages unavailable to consumers
+for a specific period of time. The difference between the two is that, for delay queues, a message is hidden when it is
+first added to queue, whereas for visibility timeouts a message is hidden only after it is consumed from the queue.
+
+To set delay seconds on individual messages, rather than on an entire queue, use message timers to allow Amazon SQS to
+use the message timer's DelaySeconds value instead of the delay queue's DelaySeconds value. Message timers let you
+specify an initial invisibility period for a message added to a queue.
+
+### Configuration
+
+- The default visibility timeout for a message is 30 seconds. The minimum is 0 seconds. The maximum is 12 hours.
+- The default (minimum) delay for a queue is 0 seconds. The maximum is 15 minutes.
+
 ## Amazon Simple Storage Service (S3 Bucket)
 
 S3 stands for `simple storage service`, and it is AWS’s cloud storage service. S3 provides the ability to store,
@@ -68,3 +91,7 @@ migrating big data into storage.
 
 AWS S3 is a `key-value store`, one of the major categories of NoSQL databases. Uploaded objects are referenced by a
 unique key, which can be any string.
+
+### References
+
+https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-delay-queues.html
