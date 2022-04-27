@@ -2,6 +2,9 @@
 
 ## Amazon Simple Queue Service (Amazon SQS)
 
+_SQS is a managed message queuing service used to send, store and retrieve multiple messages of various sizes
+asynchronously._
+
 It provides an HTTP API through which items can be submitted to and readout of a queue by apps. AWS fully manages the
 queue itself, making SQS an easy solution for passing messages between different components of software systems running
 in the cloud.
