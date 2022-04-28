@@ -76,6 +76,16 @@ specify an initial invisibility period for a message added to a queue.
 - SQS message retention period (MessageRetentionPeriod) is 14 days. After that time message will be deleted from the
   queue.
 
+### Example of message read from SQS with all metadata:
+
+`{"requestClientOptions":{"readLimit":131073,"skipAppendUriPath":false},"requestMetricCollector":null,"
+customRequestHeaders":null,"customQueryParameters":null,"cloneSource":null,"sdkRequestTimeout":null,"
+sdkClientExecutionTimeout":null,"queueUrl":"learning-queue","messageBody":"\"Something\"","delaySeconds":30,"
+messageAttributes":{"AttributeOne":{"stringValue":"This is an attribute","binaryValue":null,"stringListValues":[],"
+binaryListValues":[],"dataType":"String"}},"messageSystemAttributes":{},"messageDeduplicationId":null,"messageGroupId":
+null,"generalProgressListener":{"syncCallSafe":true},"readLimit":131073,"requestCredentials":null,"cloneRoot":null,"
+requestCredentialsProvider":null}`
+
 ## Amazon Simple Storage Service (S3 Bucket)
 
 S3 stands for `simple storage service`, and it is AWS’s cloud storage service. S3 provides the ability to store,

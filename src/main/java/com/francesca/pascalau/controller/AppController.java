@@ -1,6 +1,7 @@
 package com.francesca.pascalau.controller;
 
 import com.francesca.pascalau.domain.PublisherService;
+import com.francesca.pascalau.domain.RetryConsumerService;
 import com.francesca.pascalau.domain.UploadService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/messages")
@@ -22,6 +22,14 @@ public class AppController {
 
     private final PublisherService publisherService;
     private final UploadService uploadService;
+    private final RetryConsumerService retryConsumerService;
+
+    @GetMapping("/read")
+    public ResponseEntity<String> readMessage() {
+        retryConsumerService.startListeningToMessages();
+
+        return new ResponseEntity<>("Message read", new HttpHeaders(), HttpStatus.OK);
+    }
 
     @PostMapping("/publish")
     public ResponseEntity<String> postMessage(@RequestBody String message) {

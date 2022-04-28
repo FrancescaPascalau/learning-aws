@@ -12,7 +12,7 @@ import static org.springframework.cloud.aws.messaging.listener.SqsMessageDeletio
 @RequiredArgsConstructor
 public class ConsumerService {
 
-    @SqsListener(value = "${sqs.queue}", deletionPolicy = ON_SUCCESS)
+//    @SqsListener(value = "${sqs.queue}", deletionPolicy = ON_SUCCESS)
     public void processMessage(String message) {
         try {
             log.info("Received new SQS message: {}", message);
