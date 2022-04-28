@@ -21,7 +21,7 @@ Standard queues allow a high number of inflight messages. If the majority of you
 sent to a dead-letter queue, your rate of processing valid messages can slow down. Thus, to maintain the efficiency of
 your queue, make sure that your application correctly handles message processing.
 
-![](FIFO.png)   ![](Standard.png)
+![](queue_types.png)
 
 ### How does SQS work?
 
