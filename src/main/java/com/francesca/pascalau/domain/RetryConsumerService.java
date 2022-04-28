@@ -34,7 +34,7 @@ public class RetryConsumerService {
         for (Message messageObject : messages) {
             String messageCount = messageObject.getAttributes().get(MessageSystemAttributeName.ApproximateReceiveCount.name());
 
-            if (Integer.parseInt(messageCount) == MAX_RETRIES) {
+            if (Integer.parseInt(messageCount) >= MAX_RETRIES) {
                 log.error("Max message retries exceeded");
             } else {
                 log.info("Message approximate count is: " + messageCount);
