@@ -21,30 +21,16 @@ public class UploadService {
     @Value("${s3.name}")
     private String bucketName;
 
-    public void upload(String message) {
-        log.info("Uploading message to S3 as file: {}", message);
-
-//        generatePreSignedUrl(message);
-    }
-
-//    private void generatePreSignedUrl(String filePath) {
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.setTime(new Date());
-//        calendar.add(Calendar.MINUTE, 10); //validity of 10 minutes
-//
-//        amazonS3.generatePresignedUrl(bucketName, filePath, calendar.getTime(), HttpMethod.PUT);
-//    }
-
-    public String uploadFile(String keyName, String message) {
+    public void uploadFile(String keyName, String message) {
         try {
             ObjectMetadata metadata = new ObjectMetadata();
             amazonS3.putObject(bucketName, keyName, convertMessage(message), metadata);
-            return "File uploaded: " + keyName;
+            log.info("File uploaded: " + keyName);
         } catch (AmazonServiceException serviceException) {
             log.info("AmazonServiceException: " + serviceException.getMessage());
             throw serviceException;
         } catch (AmazonClientException clientException) {
-            log.info("AmazonClientException Message: " + clientException.getMessage());
+            log.info("AmazonClientException: " + clientException.getMessage());
             throw clientException;
         }
     }
