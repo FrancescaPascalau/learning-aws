@@ -30,16 +30,17 @@ public class RetryConsumerService {
                 .withMaxNumberOfMessages(1)
                 .withWaitTimeSeconds(3);
 
-        int retries = 0;
-        while (retries < MAX_RETRIES) {
-            final List<Message> messages = amazonSQS.receiveMessage(receiveMessageRequest).getMessages();
-            for (Message messageObject : messages) {
-                String messageCount = messageObject.getAttributes().get(MessageSystemAttributeName.ApproximateReceiveCount.name());
+        final List<Message> messages = amazonSQS.receiveMessage(receiveMessageRequest).getMessages();
+        for (Message messageObject : messages) {
+            String messageCount = messageObject.getAttributes().get(MessageSystemAttributeName.ApproximateReceiveCount.name());
+
+            if (Integer.parseInt(messageCount) == MAX_RETRIES) {
+                log.error("Max message reties exceeded");
+            } else {
                 log.info("Message approximate count is: " + messageCount);
                 String message = messageObject.getBody();
                 log.info("Received message: " + message);
             }
-            retries = retries + 1;
         }
     }
 }
