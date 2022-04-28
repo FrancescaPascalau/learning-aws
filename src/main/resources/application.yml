@@ -1,0 +1,25 @@
+server:
+  port: 8085
+
+cloud:
+  aws:
+    region:
+      auto: false
+      static: "eu-west-1"
+    stack.auto: false
+    credentials:
+      accessKey: ${AWS_ACCESS_KEY_ID:foo}
+      secretKey: ${AWS_SECRET_ACCESS_KEY:foo}
+      instanceProfile: true
+
+sqs:
+  queue: ${LEARNING_SQS:fake}
+  max_messages: 2
+
+# Surpress WARN when starting the application
+logging:
+  level:
+    com:
+      amazonaws:
+        util:
+          EC2MetadataUtils: error

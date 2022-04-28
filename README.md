@@ -73,6 +73,8 @@ specify an initial invisibility period for a message added to a queue.
 
 - The default visibility timeout for a message is 30 seconds. The minimum is 0 seconds. The maximum is 12 hours.
 - The default (minimum) delay for a queue is 0 seconds. The maximum is 15 minutes.
+- SQS message retention period (MessageRetentionPeriod) is 14 days. After that time message will be deleted from the
+  queue.
 
 ## Amazon Simple Storage Service (S3 Bucket)
 
