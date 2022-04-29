@@ -36,6 +36,7 @@ public class RetryConsumerService {
 
             if (Integer.parseInt(messageCount) >= MAX_RETRIES) {
                 log.error("Max message retries exceeded");
+                amazonSQS.deleteMessage(queue, messageObject.getReceiptHandle());
             } else {
                 log.info("Message approximate count is: " + messageCount);
                 String message = messageObject.getBody();
