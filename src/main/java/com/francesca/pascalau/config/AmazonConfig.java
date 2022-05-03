@@ -46,9 +46,31 @@ public class AmazonConfig {
     protected MessageConverter messageConverter(ObjectMapper objectMapper) {
         var converter = new MappingJackson2MessageConverter();
         converter.setObjectMapper(objectMapper);
-        
+
         return converter;
     }
+
+//    @Bean
+//    public SimpleMessageListenerContainerFactory simpleMessageListenerContainerFactory(
+//            AmazonSQSAsync amazonSqsAsync) {
+//        final var listenerContainerFactory = new SimpleMessageListenerContainerFactory();
+//        listenerContainerFactory.setAutoStartup(true);
+//        listenerContainerFactory.setAmazonSqs(amazonSqsAsync);
+//        //listenerContainerFactory.setMaxNumberOfMessages(20);
+//        listenerContainerFactory.setVisibilityTimeout(120);
+//        //listenerContainerFactory.setTaskExecutor(createDefaultTaskExecutor());
+//        return listenerContainerFactory;
+//    }
+//
+//    private AsyncTaskExecutor createDefaultTaskExecutor() {
+//        ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
+//        threadPoolTaskExecutor.setCorePoolSize(40);
+//        threadPoolTaskExecutor.setMaxPoolSize(40);
+//        threadPoolTaskExecutor.setQueueCapacity(40);
+//        threadPoolTaskExecutor.afterPropertiesSet();
+//        threadPoolTaskExecutor.initialize();
+//        return threadPoolTaskExecutor;
+//    }
 
     @Bean
     public AmazonS3 s3() {
