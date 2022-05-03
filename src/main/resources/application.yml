@@ -15,9 +15,9 @@ cloud:
 sqs:
   queue: ${LEARNING_SQS:fake}
   max_messages: 2
-  
+
 s3:
-  name: ${S3_BUCKET_NAME:test}
+  name: ${S3_BUCKET_NAME:learning-2022}
 
 # Surpress WARN when starting the application
 logging:

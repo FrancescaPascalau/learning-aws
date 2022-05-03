@@ -3,7 +3,7 @@ package com.francesca.pascalau.controller;
 import com.francesca.pascalau.domain.sqs.MessagePublisherService;
 import com.francesca.pascalau.domain.sqs.PublisherService;
 import com.francesca.pascalau.domain.sqs.RetryConsumerService;
-import com.francesca.pascalau.domain.s3.UploadService;
+import com.francesca.pascalau.domain.s3.S3Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,8 +21,8 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class AppController {
 
+    private final S3Service s3Service;
     private final PublisherService publisherService;
-    private final UploadService uploadService;
     private final RetryConsumerService retryConsumerService;
     private final MessagePublisherService messagePublisherService;
 
@@ -49,6 +49,6 @@ public class AppController {
 
     @PostMapping("/upload")
     public void upload(@RequestBody String message) {
-        uploadService.uploadFile(LocalDate.now() + ".txt", message);
+        s3Service.uploadFile(LocalDate.now() + ".txt", message);
     }
 }
