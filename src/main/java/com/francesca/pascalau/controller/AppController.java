@@ -1,9 +1,9 @@
 package com.francesca.pascalau.controller;
 
-import com.francesca.pascalau.domain.MessagePublisherService;
-import com.francesca.pascalau.domain.PublisherService;
-import com.francesca.pascalau.domain.RetryConsumerService;
-import com.francesca.pascalau.domain.UploadService;
+import com.francesca.pascalau.domain.sqs.MessagePublisherService;
+import com.francesca.pascalau.domain.sqs.PublisherService;
+import com.francesca.pascalau.domain.sqs.RetryConsumerService;
+import com.francesca.pascalau.domain.s3.UploadService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

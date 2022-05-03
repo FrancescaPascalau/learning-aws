@@ -1,4 +1,4 @@
-package com.francesca.pascalau.domain;
+package com.francesca.pascalau.domain.sqs;
 
 import com.amazonaws.services.sqs.model.MessageAttributeValue;
 import com.amazonaws.services.sqs.model.SendMessageRequest;

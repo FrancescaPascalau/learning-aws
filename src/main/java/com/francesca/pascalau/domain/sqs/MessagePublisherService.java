@@ -1,4 +1,4 @@
-package com.francesca.pascalau.domain;
+package com.francesca.pascalau.domain.sqs;
 
 import com.amazonaws.services.sqs.AmazonSQS;
 import lombok.RequiredArgsConstructor;

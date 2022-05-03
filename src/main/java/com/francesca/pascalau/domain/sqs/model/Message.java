@@ -1,4 +1,4 @@
-package com.francesca.pascalau.domain.model;
+package com.francesca.pascalau.domain.sqs.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

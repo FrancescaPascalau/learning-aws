@@ -1,6 +1,6 @@
-package com.francesca.pascalau.domain;
+package com.francesca.pascalau.domain.sqs;
 
-import com.francesca.pascalau.domain.model.Message;
+import com.francesca.pascalau.domain.sqs.model.Message;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.aws.messaging.listener.annotation.SqsListener;

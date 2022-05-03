@@ -1,4 +1,4 @@
-package com.francesca.pascalau.domain;
+package com.francesca.pascalau.domain.s3;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
