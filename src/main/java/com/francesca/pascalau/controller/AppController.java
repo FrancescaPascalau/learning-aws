@@ -50,6 +50,8 @@ public class AppController {
 
     @PostMapping("/upload")
     public void upload(@RequestBody String message) {
-        s3Service.uploadFile(LocalDate.now() + "_" + UUID.randomUUID(), message);
+        String fileName = LocalDate.now() + "_" + UUID.randomUUID() + ".txt";
+
+        s3Service.uploadFile(fileName, message);
     }
 }
