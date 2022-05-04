@@ -16,6 +16,8 @@ import java.io.ByteArrayInputStream;
 @RequiredArgsConstructor
 public class S3Service {
 
+//    private static final int CONTENT_LENGTH = 50;
+
     private final AmazonS3 amazonS3;
 
     @Value("${s3.name}")
@@ -25,8 +27,12 @@ public class S3Service {
         create();
 
         try {
+            ByteArrayInputStream inputStream = convertMessage(message);
+
             ObjectMetadata metadata = new ObjectMetadata();
-            amazonS3.putObject(bucketName, keyName, convertMessage(message), metadata);
+//            metadata.setContentLength(CONTENT_LENGTH);
+
+            amazonS3.putObject(bucketName, keyName, inputStream, metadata);
             log.info("File uploaded: {}", keyName);
         } catch (Exception e) {
             log.warn("Exception while uploading file: {}", e.getMessage());
@@ -42,13 +48,19 @@ public class S3Service {
     private void create() {
         log.info("Creating bucket with name: {}", bucketName);
 
+        if (amazonS3.doesBucketExistV2(bucketName)) {
+            log.warn("Bucket already exists.");
+            return;
+        }
+
         amazonS3.createBucket(bucketName);
     }
 
-    public void listAllFiles() {
+    private void listAllFiles() {
         ObjectListing objectListing = amazonS3.listObjects(bucketName);
+        log.info("Retrieving files from bucket: \n");
         for (S3ObjectSummary objectSummary : objectListing.getObjectSummaries()) {
-            log.info("Retrieving files from bucket: {}", objectSummary.getKey());
+            log.info("{}", objectSummary.getKey());
         }
     }
 }

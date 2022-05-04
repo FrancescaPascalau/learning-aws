@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/messages")
@@ -49,6 +50,6 @@ public class AppController {
 
     @PostMapping("/upload")
     public void upload(@RequestBody String message) {
-        s3Service.uploadFile(LocalDate.now() + ".txt", message);
+        s3Service.uploadFile(LocalDate.now() + "_" + UUID.randomUUID(), message);
     }
 }

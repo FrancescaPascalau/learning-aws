@@ -73,7 +73,7 @@ public class AmazonConfig {
 //    }
 
     @Bean
-    public AmazonS3 s3() {
+    public AmazonS3 amazonS3() {
         return AmazonS3ClientBuilder
                 .standard()
                 .withRegion(region)
